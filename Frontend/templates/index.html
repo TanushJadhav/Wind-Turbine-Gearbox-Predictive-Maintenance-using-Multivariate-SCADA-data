@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThermOil Guardian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .navbar p {
+            margin: 0;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+            margin-right: 10px;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 2px;
+            width: 25px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 15px;
+                background-color: #342828;
+                width: auto; /* 150px */
+                border-radius: 5px;
+                padding: 10px;
+                margin: 3px;
+            }
+
+            .links.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div>
+            <h1>ThermOil Guardian</h1>
+            <p>Your Personal Predictive Maintenance Tool</p>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="links" id="navLinks">
+            <a href="#">Home</a>
+            <a href="#">Prediction</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </div>
+
+    <div class="input_form">
+        <form id="predictionForm">
+            <label for="sel_model" class="form-label">Select Feature to Predict</label>
+            <select id="sel_model" name="sel_model" required>
+                <option value="" disabled selected>Choose an option</option>
+                <option value="gear_oil_temp">Gear Oil Temperature</option>
+                <option value="gear_oil_inlet_temp">Gear Oil inlet Temperature</option>
+                <option value="front_bearing_temp">Front Bearing Temperature</option>
+                <option value="rear_bearing_temp">Rear Bearing Temperature</option>
+                <option value="gen_bearing_front_temp">Generator Bearing Front Temperature</option>
+                <option value="gen_bearing_rear_temp">Generator Bearing Rear Temperature</option>
+                <option value="rotor_bearing_temp">Rotor Bearing Temperature</option>
+                <option value="stator_temp">Stator Temperature</option>
+            </select>
+
+            <label for="temp1">Income (Per Annum)</label>
+            <input type="number"id="temp1" name="temp1" required>
+
+            <label for="temp2">Income (Per Annum)</label>
+            <input type="number" id="temp2" name="temp2" required>
+
+            <label for="temp3">Income (Per Annum)</label>
+            <input type="number" id="temp3" name="temp3" required>
+
+            <label for="temp4">Income (Per Annum)</label>
+            <input type="number" id="temp4" name="temp4" required>
+
+            <label for="temp5">Income (Per Annum)</label>
+            <input type="number" id="temp5" name="temp5" required>
+
+            <label for="temp6">Income (Per Annum)</label>
+            <input type="number" id="temp6" name="temp6" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="result"></div>
+
+    <!-- <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("show");
+        }
+    </script> -->
+    <script src="../static/js/toggleMenu.js""></script>
+
+</body>
+
+</html>
