@@ -46,7 +46,7 @@ def predict():
         else:
             model.load_weights("../Model Files/LSTM Model/Stator temperature 1 (°C).csv.h5")
 
-        prediction = model.predict([[temp1, temp2, temp3, temp4, temp5, temp6]])
+        prediction = model.predict([[temp1, temp2, temp3, temp4, temp5, temp6]])[0,0]
         
         return jsonify({'prediction': prediction})    
     

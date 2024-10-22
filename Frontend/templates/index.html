@@ -10,6 +10,17 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            display: flex;
+            /* Use flexbox */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            padding-top: 60px;
+            /* Add padding to account for the navbar height */
+            flex-direction: column;
+            /* Allow flex children to stack vertically */
         }
 
         .navbar {
@@ -19,15 +30,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
+            position: fixed;
+            /* Keep navbar fixed at the top */
+            width: 100%;
+            /* Ensure it spans the full width */
+            top: 0;
+            /* Align to the top */
+            z-index: 1000;
+            /* Make sure it's above other content */
         }
 
-        .navbar h1 {
+        .nav_logo {
+            margin-left: 20px;
+        }
+
+        .nav_logo h1 {
             margin: 0;
             font-size: 24px;
         }
 
-        .navbar p {
+        .nav_logo p {
             margin: 0;
             font-size: 12px;
             color: #ccc;
@@ -36,7 +58,7 @@
         .links {
             display: flex;
             gap: 20px;
-            margin-right: 10px;
+            margin-right: 20px;
         }
 
         .links a {
@@ -71,7 +93,8 @@
                 top: 60px;
                 right: 15px;
                 background-color: #342828;
-                width: auto; /* 150px */
+                width: auto;
+                /* 150px */
                 border-radius: 5px;
                 padding: 10px;
                 margin: 3px;
@@ -85,13 +108,69 @@
                 display: flex;
             }
         }
+
+        #predictionForm {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            border: 2px solid;
+            padding: 20px;
+            /* Add some padding for better appearance */
+            border-radius: 5px;
+            /* Optional: add rounded corners */
+        }
+
+        #predictionForm label {
+            margin-top: 15px;
+            margin-bottom: 3px;
+        }
+        #predictionForm button {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input_form {
+            display: flex;
+            justify-content: center;
+        }
+
+        form select {
+            width: 100%;
+        }
+
+        .temperature-columns {
+            display: flex;
+            /* Use flex to create two columns */
+            justify-content: space-between;
+            width: 100%;
+            /* Full width for both columns */
+        }
+
+        .temperature-column {
+            display: flex;
+            flex-direction: column;
+            /* Stack inputs vertically in each column */
+            flex: 1;
+            /* Equal width for both columns */
+            margin-right: 10px;
+            /* Space between columns */
+        }
+
+        .temperature-column:last-child {
+            margin-right: 0;
+        }
+
+        form button {
+            width: 100%;
+        }
+
     </style>
 </head>
 
 <body>
 
     <div class="navbar">
-        <div>
+        <div class="nav_logo">
             <h1>ThermOil Guardian</h1>
             <p>Your Personal Predictive Maintenance Tool</p>
         </div>
@@ -101,9 +180,9 @@
             <div class="bar"></div>
         </div>
         <div class="links" id="navLinks">
-            <a href="#">Home</a>
-            <a href="#">Prediction</a>
-            <a href="#">Contact Us</a>
+            <a href="home.html">Home</a>
+            <a href="index.html">Prediction</a>
+            <a href="home.html">About Us</a>
         </div>
     </div>
 
@@ -122,23 +201,29 @@
                 <option value="stator_temp">Stator Temperature</option>
             </select>
 
-            <label for="temp1">Income (Per Annum)</label>
-            <input type="number"id="temp1" name="temp1" required>
+            <div class="temperature-columns">
+                <div class="temperature-column">
+                    <label for="temp1">Temperature 1</label>
+                    <input type="number" id="temp1" name="temp1" step="0.01" required>
 
-            <label for="temp2">Income (Per Annum)</label>
-            <input type="number" id="temp2" name="temp2" required>
+                    <label for="temp2">Temperature 2</label>
+                    <input type="number" id="temp2" name="temp2" step="0.01" required>
 
-            <label for="temp3">Income (Per Annum)</label>
-            <input type="number" id="temp3" name="temp3" required>
+                    <label for="temp3">Temperature 3</label>
+                    <input type="number" id="temp3" name="temp3" step="0.01" required>
+                </div>
 
-            <label for="temp4">Income (Per Annum)</label>
-            <input type="number" id="temp4" name="temp4" required>
+                <div class="temperature-column">
+                    <label for="temp4">Temperature 4</label>
+                    <input type="number" id="temp4" name="temp4" step="0.01" required>
 
-            <label for="temp5">Income (Per Annum)</label>
-            <input type="number" id="temp5" name="temp5" required>
+                    <label for="temp5">Temperature 5</label>
+                    <input type="number" id="temp5" name="temp5" step="0.01" required>
 
-            <label for="temp6">Income (Per Annum)</label>
-            <input type="number" id="temp6" name="temp6" required>
+                    <label for="temp6">Temperature 6</label>
+                    <input type="number" id="temp6" name="temp6" step="0.01" required>
+                </div>
+            </div>
 
             <button type="submit">Submit</button>
         </form>
@@ -146,13 +231,7 @@
 
     <div id="result"></div>
 
-    <!-- <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById("navLinks");
-            navLinks.classList.toggle("show");
-        }
-    </script> -->
-    <script src="../static/js/toggleMenu.js""></script>
+    <script src="../static/js/toggleMenu.js"></script>
 
 </body>
 
