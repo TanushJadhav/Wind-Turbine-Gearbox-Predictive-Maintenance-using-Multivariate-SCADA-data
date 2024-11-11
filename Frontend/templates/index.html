@@ -22,7 +22,7 @@
             flex-direction: column;
             /* Allow flex children to stack vertically */
         }
-
+    
         .navbar {
             background-color: #333;
             color: white;
@@ -39,44 +39,44 @@
             z-index: 1000;
             /* Make sure it's above other content */
         }
-
+    
         .nav_logo {
             margin-left: 20px;
         }
-
+    
         .nav_logo h1 {
             margin: 0;
             font-size: 24px;
         }
-
+    
         .nav_logo p {
             margin: 0;
             font-size: 12px;
             color: #ccc;
         }
-
+    
         .links {
             display: flex;
             gap: 20px;
             margin-right: 20px;
         }
-
+    
         .links a {
             color: white;
             text-decoration: none;
             font-size: 16px;
         }
-
+    
         .links a:hover {
             text-decoration: underline;
         }
-
+    
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
         }
-
+    
         .bar {
             height: 2px;
             width: 25px;
@@ -84,7 +84,7 @@
             margin: 3px 0;
             transition: 0.4s;
         }
-
+    
         @media (max-width: 768px) {
             .links {
                 display: none;
@@ -99,16 +99,16 @@
                 padding: 10px;
                 margin: 3px;
             }
-
+    
             .links.show {
                 display: flex;
             }
-
+    
             .hamburger {
                 display: flex;
             }
         }
-
+    
         #predictionForm {
             display: flex;
             flex-direction: column;
@@ -119,25 +119,26 @@
             border-radius: 5px;
             /* Optional: add rounded corners */
         }
-
+    
         #predictionForm label {
             margin-top: 15px;
             margin-bottom: 3px;
         }
+    
         #predictionForm button {
             margin-top: 15px;
             margin-bottom: 15px;
         }
-
+    
         .input_form {
             display: flex;
             justify-content: center;
         }
-
+    
         form select {
             width: 100%;
         }
-
+    
         .temperature-columns {
             display: flex;
             /* Use flex to create two columns */
@@ -145,7 +146,7 @@
             width: 100%;
             /* Full width for both columns */
         }
-
+    
         .temperature-column {
             display: flex;
             flex-direction: column;
@@ -155,15 +156,14 @@
             margin-right: 10px;
             /* Space between columns */
         }
-
+    
         .temperature-column:last-child {
             margin-right: 0;
         }
-
+    
         form button {
             width: 100%;
         }
-
     </style>
 </head>
 
@@ -230,6 +230,52 @@
     </div>
 
     <div id="result"></div>
+
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            // Collect form data
+            const sel_model = document.getElementById("sel_model").value;
+            const temp1 = document.getElementById("temp1").value;
+            const temp2 = document.getElementById("temp2").value;
+            const temp3 = document.getElementById("temp3").value;
+            const temp4 = document.getElementById("temp4").value;
+            const temp5 = document.getElementById("temp5").value;
+            const temp6 = document.getElementById("temp6").value;
+
+            // Send data to the Flask backend
+            fetch("/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    sel_model: sel_model,
+                    temp1: temp1,
+                    temp2: temp2,
+                    temp3: temp3,
+                    temp4: temp4,
+                    temp5: temp5,
+                    temp6: temp6
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Display prediction result below the form
+                    const resultDiv = document.getElementById("result");
+                    if (data.prediction !== undefined) {
+                        resultDiv.innerHTML = `<p>Prediction: ${data.prediction}</p>`;
+                    } else {
+                        resultDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("result").innerHTML = "<p>An error occurred while making the prediction.</p>";
+                });
+        });
+    </script>
 
     <script src="../static/js/toggleMenu.js"></script>
 
