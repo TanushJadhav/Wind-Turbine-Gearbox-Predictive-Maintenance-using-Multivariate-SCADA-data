@@ -12,19 +12,19 @@
             padding: 0;
             height: 100vh;
             display: flex;
-            /* Use flexbox */
             justify-content: center;
-            /* Center horizontally */
             align-items: center;
-            /* Center vertically */
             padding-top: 60px;
-            /* Add padding to account for the navbar height */
             flex-direction: column;
-            /* Allow flex children to stack vertically */
+            background-image: url('../static/Images/wt.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; 
         }
     
         .navbar {
-            background-color: #333;
+            /* background-color: #3333331b; */
             color: white;
             padding: 15px;
             display: flex;
@@ -115,9 +115,8 @@
             align-items: start;
             border: 2px solid;
             padding: 20px;
-            /* Add some padding for better appearance */
             border-radius: 5px;
-            /* Optional: add rounded corners */
+            background-color: #ffffff65;
         }
     
         #predictionForm label {
@@ -179,11 +178,11 @@
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-        <div class="links" id="navLinks">
+        <!-- <div class="links" id="navLinks">
             <a href="home.html">Home</a>
             <a href="index.html">Prediction</a>
-            <a href="home.html">About Us</a>
-        </div>
+            <a href="contact.html">About Us</a>
+        </div> -->
     </div>
 
     <div class="input_form">
@@ -226,10 +225,11 @@
             </div>
 
             <button type="submit">Submit</button>
+            <div id="result"></div>
         </form>
     </div>
 
-    <div id="result"></div>
+    
 
     <script>
         document.getElementById("predictionForm").addEventListener("submit", function (event) {
