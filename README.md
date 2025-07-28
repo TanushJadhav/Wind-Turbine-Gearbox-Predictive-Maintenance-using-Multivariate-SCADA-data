@@ -1,5 +1,3 @@
-# Wind-Turbine-Gearbox-Predictive-Maintenance-using-Multivariate-SCADA-data
-
 ## 🚀 About the Project
 
 This project focuses on predictive maintenance for wind turbine gearboxes using multivariate SCADA (Supervisory Control and Data Acquisition) data. Gearbox failures in wind turbines are costly and can lead to significant downtime. By analyzing real-time sensor data—such as gearbox temperatures, wind speed, power output, and bearing temperatures—the project aims to detect early signs of failure and issue timely alerts.
